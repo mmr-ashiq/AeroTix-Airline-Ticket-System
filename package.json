@@ -1,0 +1,24 @@
+{
+  "name": "aerotix-airline-ticket-system",
+  "version": "1.0.0",
+  "description": "Microservice",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx nodemon ./src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mmr-ashiq/AeroTix-Airline-Ticket-System.git"
+  },
+  "author": "mmr-ashiq",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mmr-ashiq/AeroTix-Airline-Ticket-System/issues"
+  },
+  "homepage": "https://github.com/mmr-ashiq/AeroTix-Airline-Ticket-System#readme",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  }
+}
