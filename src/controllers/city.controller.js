@@ -1,3 +1,4 @@
+const { error } = require("console");
 const { CityService } = require("../services/index");
 const cityService = new CityService();
 
@@ -5,7 +6,7 @@ const create = async (req, res) => {
   try {
     const city = await cityService.createCity({ name: req.body.name });
 
-    res.status(200).json({
+    res.status(201).json({
       success: true,
       data: city,
       message: "City created successfully",
@@ -22,6 +23,13 @@ const create = async (req, res) => {
 const get = async (req, res) => {
   try {
     const city = await cityService.getCity(req.params.id);
+
+    if (!city) {
+      return res.status(404).json({
+        success: false,
+        message: "City not found",
+      });
+    }
 
     res.status(200).json({
       success: true,
@@ -41,7 +49,14 @@ const update = async (req, res) => {
   try {
     const city = await cityService.updateCity(req.params.id, req.body);
 
-    res.status(200).json({
+    if (!city) {
+      return res.status(404).json({
+        success: false,
+        message: "City not found",
+      });
+    }
+
+    res.status(201).json({
       success: true,
       data: city,
       message: "City updated successfully",
@@ -59,6 +74,13 @@ const remove = async (req, res) => {
   try {
     const response = await cityService.deleteCity(req.params.id);
 
+    if (!response) {
+      return res.status(404).json({
+        success: false,
+        message: "City not found",
+      });
+    }
+
     res.status(200).json({
       success: true,
       message: "City deleted successfully",
@@ -71,4 +93,11 @@ const remove = async (req, res) => {
       error: error,
     });
   }
+};
+
+module.exports = {
+  create,
+  get,
+  update,
+  remove,
 };

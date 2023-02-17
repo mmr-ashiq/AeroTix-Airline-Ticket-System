@@ -10,7 +10,7 @@ class CityService {
       const city = await this.cityRepository.createCity({ name });
       return city;
     } catch (error) {
-      throw { error };
+      throw error;
     }
   }
 
