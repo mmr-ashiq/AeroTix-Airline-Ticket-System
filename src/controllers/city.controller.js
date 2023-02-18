@@ -97,14 +97,14 @@ const remove = async (req, res) => {
 
 const getAll = async (req, res) => {
   try {
-    const cities = await cityService.getAllCities();
+    const cities = await cityService.getAllCities(req.query);
 
     if (!cities) {
       return res.status(404).json({
         success: false,
         message: "Cities not found",
         error: error,
-      })
+      });
     }
 
     res.status(200).json({
@@ -119,7 +119,7 @@ const getAll = async (req, res) => {
       error: error,
     });
   }
-}
+};
 
 module.exports = {
   create,
