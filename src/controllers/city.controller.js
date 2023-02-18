@@ -95,9 +95,36 @@ const remove = async (req, res) => {
   }
 };
 
+const getAll = async (req, res) => {
+  try {
+    const cities = await cityService.getAllCities();
+
+    if (!cities) {
+      return res.status(404).json({
+        success: false,
+        message: "Cities not found",
+        error: error,
+      })
+    }
+
+    res.status(200).json({
+      success: true,
+      data: cities,
+      message: "Cities retrieved successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+      error: error,
+    });
+  }
+}
+
 module.exports = {
   create,
   get,
   update,
   remove,
+  getAll,
 };
